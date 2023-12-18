@@ -1,2 +1,27 @@
-# Vocab-Notifier-Python
-This SImple Python Code will provide you meaning of a word in every 30 mins
+# About
+This program will provide you meaning of a random word through notification in every 30 miniutes which will help you to increase your vocabulary
+
+# Libraries Used 
+```python
+>>>from plyer import notification       // to send notification
+>>>import time                          // to sleep the program for 30 minutes
+>>>import requests                      // to interact with dictonary API
+>>>import json                          // to handle the data recieved
+>>>import win32com.client as wincl      // to speak out the notification
+>>>from random_word import RandomWords  // to generate random words
+```
+# API Used
+DictionaryAPI -- 
+```python
+>>>url=f"https://api.dictionaryapi.dev/api/v2/entries/en/{word}"
+```
+# Process 
+The json file that is recived for a word (Example -- School)
+```text
+[{'word': 'school', 'phonetic': '/skuːl/', 'phonetics': [{'text': '/skuːl/', 'audio': 'https://api.dictionaryapi.dev/media/pronunciations/en/school-uk.mp3', 'sourceUrl': 'https://commons.wikimedia.org/w/index.php?curid=9027379', 'license': {'name': 'BY 3.0 US', 'url': 'https://creativecommons.org/licenses/by/3.0/us'}}], 'meanings': [{'partOfSpeech': 'noun', 'definitions': [{'definition': '(collective) A group of fish or a group of marine mammals such as porpoises, dolphins, or whales.', 'synonyms': [], 'antonyms': [], 'example': 'The divers encountered a huge school of mackerel.'}, {'definition': 'A multitude.', 'synonyms': [], 'antonyms': []}], 'synonyms': ['shoal'], 'antonyms': []}, {'partOfSpeech': 'verb', 'definitions': [{'definition': '(of fish) To form into, or travel in a school.', 'synonyms': [], 'antonyms': []}], 'synonyms': [], 'antonyms': []}], 'license': {'name': 'CC BY-SA 3.0', 'url': 'https://creativecommons.org/licenses/by-sa/3.0'}, 'sourceUrls': ['https://en.wiktionary.org/wiki/school']}, {'word': 'school', 'phonetic': '/skuːl/', 'phonetics': [{'text': '/skuːl/', 'audio': 'https://api.dictionaryapi.dev/media/pronunciations/en/school-uk.mp3', 'sourceUrl': 'https://commons.wikimedia.org/w/index.php?curid=9027379', 'license': {'name': 'BY 3.0 US', 'url': 'https://creativecommons.org/licenses/by/3.0/us'}}], 'meanings': [{'partOfSpeech': 'noun', 'definitions': [{'definition': 'An institution dedicated to teaching and learning; an educational institution.', 'synonyms': [], 'antonyms': [], 'example': 'Harvard University is a famous American postsecondary school.'}, {'definition': 'An educational institution providing primary and secondary education, prior to tertiary education (college or university).', 'synonyms': [], 'antonyms': []}, {'definition': 'At Eton College, a period or session of teaching.', 'synonyms': [], 'antonyms': [], 'example': 'Divinity, history and geography are studied for two schools per week.'}, {'definition': 'Within a larger educational institution, an organizational unit, such as a department or institute, which is dedicated to a specific subject area.', 'synonyms': [], 'antonyms': [], 'example': 'We are enrolled in the same university, but I attend the School of Economics and my brother is in the School of Music.'}, {'definition': 'An art movement, a community of artists.', 'synonyms': [], 'antonyms': [], 'example': 'The Barbizon school of painters were part of an art movement towards Realism in art, which arose in the context of the dominant Romantic Movement of the time.'}, {'definition': '(considered collectively) The followers of a particular doctrine; a particular way of thinking or particular doctrine; a school of thought.', 'synonyms': [], 'antonyms': [], 'example': 'These economists belong to the monetarist school.'}, {'definition': 'The time during which classes are attended or in session in an educational institution.', 'synonyms': [], 'antonyms': [], 'example': "I'll see you after school."}, {'definition': 'The room or hall in English universities where the examinations for degrees and honours are held.', 'synonyms': [], 'antonyms': []}, {'definition': 'The canons, precepts, or body of opinion or practice, sanctioned by the authority of a particular class or age.', 'synonyms': [], 'antonyms': [], 'example': 'He was a gentleman of the old school.'}, {'definition': 'An establishment offering specialized instruction, as for driving, cooking, typing, coding, etc.', 'synonyms': [], 'antonyms': []}], 'synonyms': ['academy', 'college', 'university', 'college', 'department', 'faculty', 'institute'], 'antonyms': []}, {'partOfSpeech': 'verb', 'definitions': [{'definition': 'To educate, teach, or train (often, but not necessarily, in a school).', 'synonyms': [], 'antonyms': [], 'example': 'Many future prime ministers were schooled in Eton.'}, {'definition': 'To defeat emphatically, to teach an opponent a harsh lesson.', 'synonyms': [], 'antonyms': []}, {'definition': "To control, or compose, one's expression.", 'synonyms': [], 'antonyms': [], 'example': 'She took care to school her expression, not giving away any of her feelings.'}], 'synonyms': [], 'antonyms': []}], 'license': {'name': 'CC BY-SA 3.0', 'url': 'https://creativecommons.org/licenses/by-sa/3.0'}, 'sourceUrls': ['https://en.wiktionary.org/wiki/school']}]
+```
+First we try if the word has meaning and definition available in the dictionary API, if not then we break the loop and again try with a new word
+if proper definition and meaning of the word is available in the dictionary API then we try if the word has an example available or not, if the example id available we send the notification with word meaning and its example (i.e use in a sentence)
+if example is not available we onle send the notification with the word meaning only
+
+# Thank You
